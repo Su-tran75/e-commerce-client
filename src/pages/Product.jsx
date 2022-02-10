@@ -65,6 +65,14 @@ const FilterColor = styled.div`
   background-color: ${(props) => props.color};
   margin: 0 5px;
   cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    ${"" /* box-sizing:border-box;
+    border: 2px solid red; */}
+
+    transform:scale(0.8)
+  }
 `;
 
 const FilterSize = styled.select`
@@ -117,7 +125,7 @@ const Product = () => {
   const handleClick = (value) => () => {
     if (value === "increment" && quantity >= 0) {
       setQuantity(quantity + 1);
-    } else if (value === "decrement" && quantity >=2 ) {
+    } else if (value === "decrement" && quantity >= 2) {
       setQuantity(quantity - 1);
     }
   };
