@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
@@ -112,6 +112,16 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleClick = (value) => () => {
+    if (value === "increment" && quantity >= 0) {
+      setQuantity(quantity + 1);
+    } else if (value === "decrement" && quantity >=2 ) {
+      setQuantity(quantity - 1);
+    }
+  };
+
   return (
     <Container>
       <Navbar />
@@ -152,9 +162,15 @@ const Product = () => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove style={{ cursor: "pointer" }} />
-              <Amount>1</Amount>
-              <Add style={{ cursor: "pointer" }} />
+              <Remove
+                style={{ cursor: "pointer" }}
+                onClick={handleClick("decrement")}
+              />
+              <Amount value={quantity}>{quantity}</Amount>
+              <Add
+                style={{ cursor: "pointer" }}
+                onClick={handleClick("increment")}
+              />
             </AmountContainer>
             <Button>ADD TO CART</Button>
           </AddContainer>
